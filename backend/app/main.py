@@ -195,20 +195,6 @@ def predict_disease():
             prediction_json=json.dumps(prediction_data, default=str)
         )
         
-        # --- FIX: Generate and store doctor recommendations during prediction ---
-        recommendations = doctor_recommender.recommend_doctors(
-            top_predictions, severity_result['severity_level'], severity_result['urgency']
-        )
-        for i, rec in enumerate(recommendations):
-            db_manager.add_doctor_recommendation(
-                prediction_id=prediction_id,
-                specialist_type=rec['specialist_type'],
-                rank=i + 1,
-                relevance_score=float(rec.get('relevance_score', 1.0)),
-                recommendation_json=json.dumps(rec, default=str)
-            )
-        # ----------------------------------------------------------------------
-        
         return jsonify({
             'success': True,
             'user_id': user_id,

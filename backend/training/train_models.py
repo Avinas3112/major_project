@@ -360,4 +360,4 @@ class ModelTrainer:
 
 if __name__ == '__main__':
     trainer = ModelTrainer()
-    trainer.run_full_pipeline(n_samples=1000)  # Increased from 500 to 1000
+    trainer.run_full_pipeline(n_samples=10000)  # Increased from 1000 to 10000 for better predictions
